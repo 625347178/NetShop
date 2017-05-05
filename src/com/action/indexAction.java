@@ -26,7 +26,10 @@ public class indexAction extends ActionSupport
 		Map request=(Map)ServletActionContext.getContext().get("request");
 		
 		
-		
+		/*
+		 * 按照goodId降序排列，保证所搜索到的前五个商品为最新添加的五个
+		 * 加上一个约束条件 非特价
+		 */
 		String sql="from TGoods where goodsDel='no' and goodsIsnottejia='yes' order by goodsId desc";
 		List goodsYesTejiaList=goodsDAO.getHibernateTemplate().find(sql);
 		if(goodsYesTejiaList.size()>5)
@@ -36,7 +39,10 @@ public class indexAction extends ActionSupport
 		request.put("goodsYesTejiaList", goodsYesTejiaList);
 		
 		
-		
+		/*
+		 * 按照goodId降序排列，保证所搜索到的前五个商品为最新添加的五个
+		 * 加上一个约束条件 特价
+		 */
 		sql="from TGoods where goodsDel='no' and goodsIsnottejia='no' order by goodsId desc";
 		List goodsNoTejiaList=goodsDAO.getHibernateTemplate().find(sql);
 		if(goodsNoTejiaList.size()>5)
@@ -46,7 +52,9 @@ public class indexAction extends ActionSupport
 		request.put("goodsNoTejiaList", goodsNoTejiaList);
 		
 		
-		//paihangbang
+		/*
+		 * 从订单项表按照goodsId的数量降序排列后取前
+		 */
 		List goodsList=new ArrayList();
 		sql="select sum(goodsQuantity),goodsId from TOrderItem group by goodsId order by sum(goodsQuantity) desc";
 		List list=orderItemDAO.getHibernateTemplate().find(sql);
@@ -63,9 +71,7 @@ public class indexAction extends ActionSupport
 			goodsList=goodsList.subList(0, 5);
 		}
 		request.put("goodsList", goodsList);
-		//paihangbang
-		
-		
+		//热销商品
 		return ActionSupport.SUCCESS;
 	}
 	

@@ -36,12 +36,14 @@ String path = request.getContextPath();
 					<td width="10%">用户名</td>
 					<td width="10%">密码</td>
 					<td width="10%">真实姓名</td>
-					<td width="10%">住址</td>
+					<td width="10%">住<s:property value="#session.admin.userType"/>址</td>
 					<td width="10%">性别</td>
 					<td width="10%">联系方式</td>
 					<td width="10%">E-mail</td>
 					<td width="10%">QQ</td>
+					<s:if test="#session.admin.userType==1">
 					<td width="10%">操作</td>
+					</s:if>
 		        </tr>	
 				<s:iterator value="#request.userList" id="user">
 				<tr align='center' bgcolor="#FFFFFF" onMouseMove="javascript:this.bgColor='red';" onMouseOut="javascript:this.bgColor='#FFFFFF';" height="22">
@@ -72,9 +74,11 @@ String path = request.getContextPath();
 					<td bgcolor="#FFFFFF" align="center">
 					    <s:property value="#user.userQq"/>
 					</td>
-					<td  bgcolor="#FFFFFF" align="center">
-						<a href="#" onclick="userDel(<s:property value="#user.userId"/>)" class="pn-loperator">删除</a>
-					</td>
+					<s:if test="#session.admin.userType==1">
+						<td bgcolor="#FFFFFF" align="center">
+							<a href="#" onclick="userDel(<s:property value="#user.userId"/>)" class="pn-loperator">删除</a>
+						</td>
+					</s:if>
 				</tr>
 				</s:iterator>
 			</table>

@@ -1,10 +1,10 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ page import="com.model.*" %>
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <%
 String path = request.getContextPath();
  TAdmin admin=(TAdmin)request.getSession().getAttribute("admin");
 %>
-
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
@@ -70,7 +70,6 @@ function list(idstr){
 		imgobj.src="<%=path%>/images/ico04.gif";
 	}
 }
-
 </SCRIPT>
 
 <body>
@@ -80,9 +79,17 @@ function list(idstr){
 		<table width="100%" border="0" cellpadding="0" cellspacing="0">
 		  <tr>
 			<td width="207" height="55" background="<%=path%>/images/nav01.gif">
-				<table width="90%" border="0" align="center" cellpadding="0" cellspacing="0">
+				<table width="90%" border="0" align="left" cellpadding="0" cellspacing="0">
 				  <tr>
-					<td width="25%" rowspan="2">&nbsp;<img src="<%=path%>/images/ico02.gif" width="35" height="35" /></td>
+					<td width="30%" rowspan="2">
+						<s:if test="#session.admin.userType==1">
+							<img src="<%=path%>/images/ico021.jpg" width="50" height="54" />
+						</s:if>
+						<s:else>
+							<img src="<%=path%>/images/ico020.jpg" width="50" height="54" />
+						</s:else>
+					
+					</td>
 					<td width="75%" height="22" class="left-font01">您好，<span class="left-font02"><%=admin.getUserName() %></span></td>
 				  </tr>
 				  <tr>
@@ -120,12 +127,13 @@ function list(idstr){
 				  <td width="9%" height="21" ><img id="xiaotu21" src="<%=path%>/images/ico06.gif" width="8" height="12" /></td>
 				  <td width="91%"><a href="<%=path %>/admin/index/userinfo.jsp" target="mainFrame" class="left-font03" onClick="tupian('21');">密码修改</a></td>
 				</tr>
-				
+				<s:if test="#session.admin.userType==1">
 				<tr>
-				  <td width="9%" height="21" ><img id="xiaotu21" src="<%=path%>/images/ico06.gif" width="8" height="12" /></td>
-				  <td width="91%"><a href="<%=path %>/adminManage.action" target="mainFrame" class="left-font03" onClick="tupian('22');">管理员维护</a></td>
+			 		<td width="9%" height="21" ><img id="xiaotu21" src="<%=path%>/images/ico06.gif" width="8" height="12" /></td>
+			  		<td width="91%"><a href="<%=path %>/adminManage.action" target="mainFrame" class="left-font03" onClick="tupian('22');">管理员维护</a></td>
 				</tr>
-      </table>
+				</s:if>
+       </table>
 		<!--  任务系统结束    -->
 
 		<!--  消息系统开始    -->

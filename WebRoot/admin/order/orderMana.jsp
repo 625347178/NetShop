@@ -94,10 +94,12 @@ String path = request.getContextPath();
 						    <s:if test="#order.orderZhuangtai=='no'">
 							    <a href="#" onclick="orderShouli(<s:property value="#order.orderId"/>)" class="pn-loperator">受理订单</a>
 						    </s:if>
-						    <s:if test="#order.orderZhuangtai=='yes'">
-						         已受理
+						    <s:if test="#order.orderZhuangtai!='no'">
+						         管理员id<s:property value="#order.orderZhuangtai"/>已受理
 						    </s:if>
+						    <s:if test="#session.admin.userType==1">
 							<a href="#" onclick="orderDel(<s:property value="#order.orderId"/>)" class="pn-loperator">删除订单</a>
+							</s:if>
 					</td>
 				</tr>
 				</s:iterator>

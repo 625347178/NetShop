@@ -16,5 +16,8 @@
         <property name="userPw" type="java.lang.String">
             <column name="userPw" length="50" />
         </property>
+        <property name="userType" type="java.lang.Integer">
+            <column name="userType" length="1" />
+        </property>
     </class>
 </hibernate-mapping>

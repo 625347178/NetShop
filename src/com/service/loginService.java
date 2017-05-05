@@ -11,6 +11,8 @@ import com.dao.TAdminDAO;
 import com.dao.TUserDAO;
 import com.model.TAdmin;
 import com.model.TUser;
+import com.opensymphony.xwork2.ActionContext;
+import com.opensymphony.xwork2.util.ValueStack;
 
 public class loginService
 {
@@ -50,9 +52,9 @@ public class loginService
 		String result="no";
 		System.out.println("----  "+userName);
 		System.out.println("----  "+userPw);
-		if(userType==0)//ÏµÍ³¹ÜÀíÔ±µÇÂ½
+		if(userType==0)//ÏµÍ³ï¿½ï¿½ï¿½ï¿½Ô±ï¿½ï¿½Â½
 		{
-			String sql="from TAdmin where userName=? and userPw=?";
+			String sql="from TAdmin where userName=? and userPw=? and userType=0";
 			Object[] con={userName,userPw};
 			List adminList=adminDAO.getHibernateTemplate().find(sql,con);
 			if(adminList.size()==0)
@@ -69,11 +71,26 @@ public class loginService
 	             result="yes";
 			}
 		}
-		if(userType==1)//ÀÏÊ¦µÇÂ½
+		if(userType==1)//ï¿½ï¿½Ê¦ï¿½ï¿½Â½
 		{
-			
+			String sql="from TAdmin where userName=? and userPw=? and userType=1";
+			Object[] con={userName,userPw};
+			List adminList=adminDAO.getHibernateTemplate().find(sql,con);
+			if(adminList.size()==0)
+			{
+				 result="no";
+			}
+			else
+			{
+				 WebContext ctx = WebContextFactory.get(); 
+				 HttpSession session=ctx.getSession(); 
+				 TAdmin admin=(TAdmin)adminList.get(0);
+				 session.setAttribute("userType", 1);
+	             session.setAttribute("admin", admin);
+	             result="yes";
+			}
 		}
-		if(userType==2)//Ñ§ÉúµÇÂ½
+		if(userType==2)//Ñ§ï¿½ï¿½ï¿½Â½
 		{
 			
 		}

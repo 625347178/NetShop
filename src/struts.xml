@@ -60,6 +60,7 @@
         <action name="adminManageFenye" class="adminAction" method="adminManageFenye">
             <result name="success">/admin/index/adminManageFenye.jsp</result>
         </action>
+ 
         
         
         

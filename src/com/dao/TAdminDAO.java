@@ -99,14 +99,16 @@ public class TAdminDAO extends HibernateDaoSupport {
 	public List findAll() {
 		log.debug("finding all TAdmin instances");
 		try {
-			String queryString = "from TAdmin";
+			String queryString = "from TAdmin admin where admin.userType=0";
 			return getHibernateTemplate().find(queryString);
 		} catch (RuntimeException re) {
 			log.error("find all failed", re);
 			throw re;
 		}
 	}
-
+/* no Use
+ * ************************************************************
+ * */
 	public TAdmin merge(TAdmin detachedInstance) {
 		log.debug("merging TAdmin instance");
 		try {
@@ -141,7 +143,9 @@ public class TAdminDAO extends HibernateDaoSupport {
 			throw re;
 		}
 	}
-
+/*
+ * *****************************************************************
+ * */
 	public static TAdminDAO getFromApplicationContext(ApplicationContext ctx) {
 		return (TAdminDAO) ctx.getBean("TAdminDAO");
 	}

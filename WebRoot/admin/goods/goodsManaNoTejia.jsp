@@ -61,8 +61,8 @@ String path = request.getContextPath();
 			  x = event.clientX;
 			  y = event.clientY;
 			  document.all.tip.style.display = "block";
-			  document.all.tip.style.top = y;
-			  document.all.tip.style.left = x+10;
+			  document.all.tip.style.top = y+"px";
+			  document.all.tip.style.left = x+10+"px";
 			  document.all.photo.src = ".."+picPath;
 		   }
 		   function out()

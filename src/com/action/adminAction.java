@@ -15,6 +15,7 @@ public class adminAction extends ActionSupport
 	private int userId;
 	private String userName;
 	private String userPw;
+	private int userType;
 	 
 	private String message;
 	private String path;
@@ -29,6 +30,7 @@ public class adminAction extends ActionSupport
 		TAdmin admin=new TAdmin();
 		admin.setUserName(userName);
 		admin.setUserPw(userPw);
+		admin.setUserType(0);
 		adminDAO.save(admin);
 		this.setMessage("²Ù×÷³É¹¦");
 		this.setPath("adminManage.action");

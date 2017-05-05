@@ -39,7 +39,11 @@ body {
 		document.ThisForm.userPw.focus();
 		return false;
 	 }
-	 loginService.login(document.ThisForm.userName.value,document.ThisForm.userPw.value,0,callback);
+	 var userType=document.ThisForm.userType.value;
+	 if(userType==0)		//普通权限的管理者的话
+	 	loginService.login(document.ThisForm.userName.value,document.ThisForm.userPw.value,0,callback);
+	 else
+	 	loginService.login(document.ThisForm.userName.value,document.ThisForm.userPw.value,1,callback);
  }
 
  function callback(data)
@@ -91,12 +95,17 @@ body {
         <td height="35" class="login-text02">密　码：<br /></td>
         <td><input name="userPw" type="password" size="30" /></td>
       </tr>
+       <tr><td><span/></td>
+        <td align="right">
+        	<select name="userType"><option value=0>普通管理员</option><option value=1>高级管理员</option></select>
+        </td>
+      </tr>
+      </tr>
       <tr>
         <td height="35">&nbsp;</td>
         <td><input name="Submit2" type="button" class="right-button01" value="确认登陆" onClick="check1()" />
           <input name="Submit232" type="submit" class="right-button02" value="重 置" />
           <img id="indicator" src="<%=path %>/images/loading.gif" style="display:none"/></td>
-      </tr>
     </table>
     </form>
     </td>

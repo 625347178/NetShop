@@ -22,7 +22,7 @@ String path = request.getContextPath();
                    window.location.href="<%=path %>/admin/index.jsp";
                </s:if>
                <s:if test="#session.userType==1">
-                   window.location.href="<%=path %>/atea/index.jsp";
+                   window.location.href="<%=path %>/admin/index.jsp";
                </s:if>
                <s:if test="#session.userType==2">
                    window.location.href="<%=path %>/astu/index.jsp";

@@ -14,16 +14,26 @@ public class TAdmin implements java.io.Serializable {
 
 	private String userPw;
 
+	private Integer userType;
 	// Constructors
+
+	public Integer getUserType() {
+		return userType;
+	}
+
+	public void setUserType(Integer userType) {
+		this.userType = userType;
+	}
 
 	/** default constructor */
 	public TAdmin() {
 	}
 
 	/** full constructor */
-	public TAdmin(String userName, String userPw) {
+	public TAdmin(String userName, String userPw,Integer userType) {
 		this.userName = userName;
 		this.userPw = userPw;
+		this.userType = userType;
 	}
 
 	// Property accessors

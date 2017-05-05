@@ -18,6 +18,7 @@ import com.model.TGoods;
 import com.model.TOrder;
 import com.model.TOrderItem;
 import com.model.TUser;
+import com.model.TAdmin;
 import com.opensymphony.xwork2.ActionSupport;
 import com.util.Cart;
 
@@ -162,7 +163,10 @@ public class buyAction extends ActionSupport
 	public String orderShouli()
 	{
 		TOrder order=orderDAO.findById(orderId);
-		order.setOrderZhuangtai("yes");//已经受理订单
+		Map session= ServletActionContext.getContext().getSession();
+		TAdmin admin=(TAdmin)session.get("admin");
+		
+		order.setOrderZhuangtai(admin.getUserId().toString());//已经受理订单
 		orderDAO.attachDirty(order);
 		this.setMessage("受理订单成功");
 		this.setPath("orderMana.action");

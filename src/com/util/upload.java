@@ -35,7 +35,7 @@ public class upload extends ActionSupport
 		File dstFile = new File(dstPath);
 		copy(this.getFujian(),dstFile);
 		try{
-			uploadToLocal();
+			uploadToLocal(newFujianName);
 		}catch(Exception e){}
 		
 		Map request=(Map)ServletActionContext.getContext().get("request");
@@ -48,16 +48,14 @@ public class upload extends ActionSupport
 	 * 在下面的方法里重新将文件复制到MyEclipse的工作空间
 	 * 方便再部署
 	 */
-	public void uploadToLocal()
+	public void uploadToLocal(String newFujianName)
 	{
-		//将图片的重命名（时间戳）
-		String newFujianName=new Date().getTime()+fujianFileName.substring(fujianFileName.indexOf("."));
-		
 		String dstPath ="D:\\JavaEE\\MyEclipse\\MyEclipse 10 WorkSpace\\NetShop\\WebRoot\\upload"+"\\" + newFujianName;
+		System.out.println("保存到Eclipse的路径"+dstPath);
 		File dstFile = new File(dstPath);
 		copy(this.getFujian(),dstFile);
 	}
-	//复制文件的方法
+	//复制文件的方法（从本地至服务器）
 	private static void copy(File src, File dst) 
     {
         InputStream in = null;
